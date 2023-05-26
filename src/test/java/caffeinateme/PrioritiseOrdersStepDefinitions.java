@@ -40,8 +40,17 @@ public class PrioritiseOrdersStepDefinitions {
         assertThat(sarahsOrder).isPresent();
 
         assertThat(sarahsOrder.get().getUrgency()).isEqualTo(urgency);
-
     }
+
+    @Then("^Barry should know that the order is (.*)$")
+    public void barry_should_know_that_the_order_is(Urgency urgency){
+        Optional<Order> sarahsOrder = sarahsOrderIn(pendingOrders);
+
+        assertThat(sarahsOrder).isPresent();
+
+        assertThat(sarahsOrder.get().getUrgency()).isEqualTo(urgency);
+    }
+
 
     private Optional<Order> sarahsOrderIn(List<Order> pendingOrders) {
 

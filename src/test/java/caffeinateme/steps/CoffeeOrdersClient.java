@@ -10,6 +10,7 @@ import net.thucydides.core.annotations.Steps;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class CoffeeOrdersClient {
@@ -65,4 +66,6 @@ public class CoffeeOrdersClient {
     private double subtotalFor(Order order) {
         return productCatalog.priceOf(order.getProduct()) * order.getQuantity();
     }
+
+
 }

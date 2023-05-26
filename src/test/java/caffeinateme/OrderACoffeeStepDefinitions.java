@@ -1,6 +1,7 @@
 package caffeinateme;
 
 import caffeinateme.steps.Barista;
+import caffeinateme.steps.CoffeeOrdersClient;
 import caffeinateme.steps.Customer;
 import caffeinateme.steps.ProductCatalog;
 import io.cucumber.java.DataTableType;
@@ -30,11 +31,20 @@ public class OrderACoffeeStepDefinitions {
     @Steps(shared = true)
     private ProductCatalog productCatalog;
 
+    @Steps(shared = true)
+    private CoffeeOrdersClient coffeeShop;
+
+
     @When("^(?:.*) (?:orders|has ordered) an? (.*)$")
     public void sheOrdersA(String order) throws Throwable {
         orderReceipt = customer.placesAnOrderFor(1, order);
 
         Serenity.setSessionVariable("orderReceipt").to(orderReceipt);
+    }
+
+    @And("^Cathy is (\\d+) minutes away$")
+    public void customerIsMinutesAway(int etaInMinutes) {
+        coffeeShop.updateCustomerEta(1, etaInMinutes);
     }
 
     @Then("^Barry should receive the order$")
